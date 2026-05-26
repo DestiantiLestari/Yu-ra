@@ -1,0 +1,6 @@
+{
+  "name": "Yuéra",
+  "description": "Yuéra is a modern emotional wellness platform for women to heal, reflect, and feel understood in a safe digital space.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

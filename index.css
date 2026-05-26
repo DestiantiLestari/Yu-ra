@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Base resets & scrollbars matching the calming luxury palette */
+body {
+  font-family: var(--font-sans);
+  background-color: #FAF6F0; /* Soft Warm Creams */
+  color: #2D2529; /* Deep charcoal/plum */
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(250, 246, 240, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(186, 172, 194, 0.4);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(186, 172, 194, 0.6);
+}
+
+/* Custom Breathing Guide Pulse CSS Keyframe */
+@keyframes breathingPulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(216, 180, 254, 0.4), 0 0 40px rgba(251, 207, 232, 0.2);
+  }
+  45% {
+    transform: scale(1.22);
+    box-shadow: 0 0 0 35px rgba(216, 180, 254, 0), 0 0 90px rgba(251, 207, 232, 0.5);
+  }
+  55% {
+    transform: scale(1.22);
+    box-shadow: 0 0 0 35px rgba(216, 180, 254, 0), 0 0 90px rgba(251, 207, 232, 0.5);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(216, 180, 254, 0), 0 0 40px rgba(251, 207, 232, 0.2);
+  }
+}
+
+.breathing-bubble {
+  animation: breathingPulse 10s ease-in-out infinite;
+}
+
+/* Gentle decorative animations for floating Pinterest bubble decors */
+@keyframes slowFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.05);
+  }
+}
+
+.float-slow {
+  animation: slowFloat 8s ease-in-out infinite;
+}
+
+.float-medium {
+  animation: slowFloat 6s ease-in-out infinite;
+}
+
+.float-delay {
+  animation: slowFloat 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Elegant selection */
+::selection {
+  background-color: rgba(216, 180, 254, 0.3);
+  color: #3b1130;
+}

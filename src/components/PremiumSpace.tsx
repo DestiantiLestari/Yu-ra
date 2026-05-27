@@ -85,7 +85,7 @@ export default function PremiumSpace({ user, onUpdateUser }: PremiumSpaceProps) 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         {/* Tier 1: Free Card */}
-        <div className="bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-white/60 shadow-xs flex flex-col justify-between space-y-8">
+        <div className="bg-white/70 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-xs flex flex-col justify-between space-y-8">
           <div className="space-y-4">
             <div>
               <span className="text-[9px] uppercase tracking-widest font-bold text-slate-400">{t('premium', 'tier1_tag')}</span>
@@ -181,7 +181,7 @@ export default function PremiumSpace({ user, onUpdateUser }: PremiumSpaceProps) 
         </div>
 
         {/* Tier 3: Divine Circle Pro (Annual Pass) */}
-        <div className="bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-white/60 shadow-xs flex flex-col justify-between space-y-8">
+        <div className="bg-white/70 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-xs flex flex-col justify-between space-y-8">
           <div className="space-y-4">
             <div>
               <span className="text-[9px] uppercase tracking-widest font-bold text-slate-400">{t('premium', 'tier3_tag')}</span>

@@ -86,8 +86,8 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
     <div className="space-y-8 animate-fade-in text-[#2D2529] text-left">
       
       {/* Title block */}
-      <div>
-        <h1 className="font-serif text-3xl font-medium text-[#2D2529] tracking-tight">{t('mood', 'title')}</h1>
+      <div className="bg-white/40 border border-white/60 p-6 rounded-3xl backdrop-blur-md text-left">
+        <h1 className="font-serif text-2xl font-semibold text-[#2D2529] tracking-tight">{t('mood', 'title')}</h1>
         <p className="text-xs text-[#8C7A84] mt-1 font-light">{t('mood', 'subtitle')}</p>
       </div>
 

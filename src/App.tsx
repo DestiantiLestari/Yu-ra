@@ -438,10 +438,10 @@ export default function App() {
 
                 <button
                   onClick={handleSignOut}
-                  className="w-full flex items-center justify-center space-x-2 py-2.5 border border-slate-200 hover:bg-slate-100 hover:text-rose-500 rounded-xl text-[11px] font-semibold text-slate-500 transition duration-300 cursor-pointer"
+                  className="w-full flex items-center justify-center space-x-2 py-3 border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-600 hover:text-rose-700 rounded-xl text-xs font-bold transition duration-300 cursor-pointer shadow-3xs"
                 >
-                  <LogOut className="w-3.5 h-3.5" />
-                  <span>{t('common', 'lockSanctum')}</span>
+                  <LogOut className="w-4 h-4 text-rose-500" />
+                  <span>{language === 'id' ? 'Keluar (Log Out)' : 'Log Out'}</span>
                 </button>
               </div>
 
@@ -449,16 +449,25 @@ export default function App() {
           </aside>
 
           {/* MOBILE NAVIGATION HEADER */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/70 backdrop-blur-md border-b border-purple-50 px-6 flex items-center justify-between z-30 shadow-2xs">
-            <div className="flex items-center space-x-2.5">
+          <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-md border-b border-purple-50 px-4 flex items-center justify-between z-30 shadow-xs">
+            <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-[#D8B4FE] flex items-center justify-center shadow-xs">
                 <span className="font-serif text-sm font-bold text-white italic">Y</span>
               </div>
-              <span className="font-serif text-lg font-semibold tracking-wide text-[#3F2B36]">Yuéra</span>
+              <span className="font-serif text-base font-semibold tracking-wide text-[#3F2B36]">Yuéra</span>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <span className="text-xs text-purple-400 font-serif italic truncate max-w-[100px]">{user.name}</span>
+            <div className="flex items-center space-x-2">
+              {/* Ultra-discoverable quick log out element */}
+              <button 
+                onClick={handleSignOut}
+                className="px-2.5 py-1.5 border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-600 hover:text-rose-700 rounded-xl text-xs font-bold transition flex items-center space-x-1 cursor-pointer shadow-3xs"
+                title={language === 'id' ? 'Keluar' : 'Log Out'}
+              >
+                <LogOut className="w-3.5 h-3.5 text-rose-500" />
+                <span>{language === 'id' ? 'Keluar' : 'Log Out'}</span>
+              </button>
+
               <button 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-1 text-slate-600 hover:bg-purple-50 rounded"
@@ -531,10 +540,10 @@ export default function App() {
                       setMobileMenuOpen(false);
                       handleSignOut();
                     }}
-                    className="w-full py-2.5 border border-slate-100 hover:bg-slate-50 text-slate-500 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1"
+                    className="w-full py-3 border border-rose-200 bg-rose-50 hover:bg-rose-100/70 text-rose-600 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition cursor-pointer shadow-3xs"
                   >
-                    <LogOut className="w-3.5 h-3.5" />
-                    <span>{t('common', 'lockPortal')}</span>
+                    <LogOut className="w-3.5 h-3.5 text-rose-500" />
+                    <span>{language === 'id' ? 'Keluar (Log Out)' : 'Log Out'}</span>
                   </button>
                 </div>
               </div>
@@ -542,7 +551,7 @@ export default function App() {
           )}
 
           {/* MAIN PLATFORM DISPLAY PORT */}
-          <main className="flex-1 min-h-screen pt-20 lg:pt-0 overflow-y-auto relative z-10 px-6 py-6 lg:px-12 lg:py-10 max-w-7xl mx-auto flex flex-col justify-between">
+          <main className="flex-1 min-h-screen pt-20 lg:pt-0 overflow-y-auto relative z-10 px-6 py-6 lg:px-10 lg:py-8 max-w-6xl flex flex-col justify-between">
             {/* Dynamic tab contents load */}
             <div className="flex-1 pb-12">
               {renderTabContent()}

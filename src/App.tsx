@@ -482,7 +482,7 @@ export default function App() {
             <div className="lg:hidden fixed inset-0 z-20 bg-slate-900/10 backdrop-blur-xs flex justify-end">
               <div className="w-72 bg-white h-screen p-6 flex flex-col justify-between pt-20 animate-slide-in shadow-2xl overflow-y-auto">
                 <div className="space-y-6">
-                  <nav className="space-y-1.5 text-xs text-left">
+                  <nav className="space-y-2 text-sm text-left">
                     {navigationItems.map((item) => {
                       const Icon = item.icon;
                       const active = activeTab === item.id;
@@ -493,13 +493,13 @@ export default function App() {
                             setActiveTab(item.id);
                             setMobileMenuOpen(false);
                           }}
-                          className={`w-full px-4 py-3 rounded-2xl flex items-center space-x-3.5 transition-all text-left cursor-pointer ${
+                          className={`w-full px-4.5 py-4 rounded-2xl flex items-center space-x-4 transition-all text-left cursor-pointer text-sm font-semibold min-h-[48px] ${
                             active 
-                              ? 'bg-[#3F2B36] text-[#FEFDFB] font-semibold' 
-                              : 'text-slate-600 hover:bg-slate-50'
+                              ? 'bg-[#3F2B36] text-[#FEFDFB] font-bold shadow-xs' 
+                              : 'text-slate-650 hover:bg-slate-50'
                           }`}
                         >
-                          <Icon className="w-4 h-4" />
+                          <Icon className="w-5 h-5 shrink-0" />
                           <span>{item.label}</span>
                         </button>
                       );
@@ -507,13 +507,13 @@ export default function App() {
                   </nav>
                 </div>
 
-                <div className="space-y-4 pt-6 border-t border-slate-100">
+                <div className="space-y-5 pt-6 border-t border-slate-100">
                   {/* Mobile language selector */}
-                  <div className="flex items-center space-x-1.5 bg-[#FAF6F0] p-1 rounded-xl border border-stone-100">
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest px-2">{language === 'id' ? 'BAHASA' : 'LANG'}</span>
+                  <div className="flex items-center space-x-2 bg-[#FAF6F0] p-1.5 rounded-xl border border-stone-100">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2">{language === 'id' ? 'BAHASA' : 'LANG'}</span>
                     <button 
                       onClick={() => setLanguage('en')}
-                      className={`text-[9px] font-semibold px-2.5 py-1 rounded-md transition-all ${language === 'en' ? 'bg-[#3F2B36] text-white shadow-3xs' : 'text-slate-500 bg-white/70'}`}
+                      className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-all ${language === 'en' ? 'bg-[#3F2B36] text-white shadow-3xs' : 'text-slate-500 bg-white/70'}`}
                     >
                       🇺🇸 EN
                     </button>

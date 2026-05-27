@@ -50,44 +50,40 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
 
           <div className="grid grid-cols-2 gap-4 text-left">
             <div className="space-y-1.5 col-span-2 sm:col-span-1">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('settings', 'field_name')}</label>
+              <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('settings', 'field_name')}</label>
               <input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full text-xs p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] focus:bg-white text-slate-700"
+                className="w-full text-sm sm:text-xs p-3.5 sm:p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] focus:bg-white text-slate-700 h-12 sm:h-auto"
               />
             </div>
 
             <div className="space-y-1.5 col-span-2 sm:col-span-1">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('settings', 'field_email')}</label>
+              <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('settings', 'field_email')}</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full text-xs p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] focus:bg-white text-slate-700 font-mono"
+                className="w-full text-sm sm:text-xs p-3.5 sm:p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] focus:bg-white text-slate-705 font-mono h-12 sm:h-auto"
               />
             </div>
           </div>
 
           {/* Language Switcher pill panel requested */}
           <div className="space-y-2 text-left">
-            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
+            <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
               <Globe className="w-3.5 h-3.5" />
               <span>{t('settings', 'lang_label')}</span>
             </label>
-            <p className="text-[10px] text-slate-400 font-light font-sans">{t('settings', 'lang_desc')}</p>
+            <p className="text-xs sm:text-[10px] text-slate-400 font-light font-sans">{t('settings', 'lang_desc')}</p>
             <div className="flex gap-2.5 max-w-xs">
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`flex-1 py-2.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all duration-300 flex items-center justify-center gap-1.5 ${
-                  language === 'en' 
-                    ? 'bg-[#3F2B36] border-[#3F2B36] text-white shadow-3xs' 
-                    : 'bg-white border-stone-200/50 hover:border-purple-200 text-slate-600'
-                }`}
+                className="flex-1 py-3 sm:py-2.5 rounded-xl border text-sm sm:text-xs font-bold cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 min-h-[44px] bg-white border-stone-200/50 hover:border-purple-200 text-slate-650"
               >
                 <span>🇺🇸</span>
                 <span>English (EN)</span>
@@ -95,11 +91,7 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
               <button
                 type="button"
                 onClick={() => setLanguage('id')}
-                className={`flex-1 py-2.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all duration-300 flex items-center justify-center gap-1.5 ${
-                  language === 'id' 
-                    ? 'bg-[#3F2B36] border-[#3F2B36] text-white shadow-3xs' 
-                    : 'bg-white border-stone-200/50 hover:border-purple-200 text-slate-600'
-                }`}
+                className="flex-1 py-3 sm:py-2.5 rounded-xl border text-sm sm:text-xs font-bold cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 min-h-[44px] bg-white border-stone-200/50 hover:border-purple-200 text-slate-655"
               >
                 <span>🇮🇩</span>
                 <span>Indonesia (ID)</span>
@@ -109,7 +101,7 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
 
           {/* Role adjustment */}
           <div className="space-y-2 text-left">
-            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{t('settings', 'field_focus')}</label>
+            <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{t('settings', 'field_focus')}</label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 { id: 'student', label: t('settings', 'student_role'), desc: t('settings', 'student_role_desc'), icon: GraduationCap },
@@ -123,16 +115,16 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
                     key={item.id}
                     type="button"
                     onClick={() => setRole(item.id as any)}
-                    className={`p-3.5 rounded-2xl border text-left flex flex-col justify-between space-y-2 cursor-pointer transition-all ${
+                    className={`p-4 rounded-2xl border text-left flex flex-col justify-between space-y-2 cursor-pointer transition-all min-h-[48px] ${
                       active 
-                        ? 'bg-purple-100/40 border-[#C084FC] text-[#9056CC]' 
-                        : 'bg-white/80 border-slate-100 text-slate-600 hover:border-purple-200'
+                        ? 'bg-[#3F2B36] text-white border-[#3F2B36] font-bold shadow-md' 
+                        : 'bg-white/80 border-slate-100 text-[#404040] hover:border-[#D8B4FE]'
                     }`}
                   >
                     <Icon className="w-5 h-5 text-current" />
                     <div>
-                      <p className="text-xs font-semibold">{item.label}</p>
-                      <p className="text-[9px] text-slate-400 mt-1 leading-normal font-light">{item.desc}</p>
+                      <p className="text-sm sm:text-xs font-bold">{item.label}</p>
+                      <p className="text-xs sm:text-[9px] text-slate-400 mt-1 leading-normal font-light">{item.desc}</p>
                     </div>
                   </button>
                 );
@@ -144,8 +136,8 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
           <div className="bg-[#FAF6F0] p-4 rounded-2xl border border-dashed border-purple-200 flex items-start space-x-3 text-left">
             <Shield className="w-5 h-5 text-[#AA7BC3] shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <span className="text-xs font-semibold text-slate-700">{t('settings', 'security_tag')}</span>
-              <p className="text-[10px] text-slate-400 leading-relaxed font-light">
+              <span className="text-sm sm:text-xs font-semibold text-slate-700">{t('settings', 'security_tag')}</span>
+              <p className="text-xs sm:text-[10px] text-slate-400 leading-relaxed font-light">
                 {t('settings', 'security_desc')}
               </p>
             </div>
@@ -153,14 +145,14 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
 
           <div className="flex items-center justify-between pt-2 border-t border-slate-100">
             {success ? (
-              <span className="text-xs text-emerald-500 font-semibold animate-pulse">{t('settings', 'save_success')}</span>
+              <span className="text-sm text-emerald-500 font-bold animate-pulse">{t('settings', 'save_success')}</span>
             ) : (
-              <span className="text-[10px] text-slate-400">{t('settings', 'save_info')}</span>
+              <span className="text-xs sm:text-[10px] text-slate-400">{t('settings', 'save_info')}</span>
             )}
 
             <button
               type="submit"
-              className="px-6 py-2.5 bg-[#3F2B36] hover:bg-[#523A48] text-white rounded-full text-xs font-semibold shadow-xs flex items-center space-x-1 transition cursor-pointer active:scale-95"
+              className="px-6 py-3.5 sm:py-2.5 bg-[#3F2B36] hover:bg-[#523A48] text-[#FEFDFB] rounded-full text-sm sm:text-xs font-bold shadow-xs flex items-center space-x-1.5 transition cursor-pointer active:scale-95 min-h-[44px]"
             >
               <Save className="w-4 h-4" />
               <span>{t('settings', 'btn_save')}</span>
@@ -178,36 +170,36 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
               <h3 className="font-serif text-base font-semibold">{t('settings', 'notification_title')}</h3>
             </div>
             
-            <p className="text-xs text-slate-400 font-light leading-relaxed">
+            <p className="text-sm sm:text-xs text-slate-500 font-light leading-relaxed">
               {t('settings', 'notification_desc')}
             </p>
 
             <div className="space-y-3">
-              <label className="flex items-center space-x-3 text-xs text-slate-600 cursor-pointer">
-                <input type="checkbox" defaultChecked className="w-4 h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400" />
-                <span className="font-light">{t('settings', 'rem_1')}</span>
+              <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-650 cursor-pointer p-3 sm:p-1 hover:bg-slate-50 border border-stone-100/50 sm:border-0 rounded-xl transition-all min-h-[44px]">
+                <input type="checkbox" defaultChecked className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400" />
+                <span className="font-medium text-slate-700">{t('settings', 'rem_1')}</span>
               </label>
               
-              <label className="flex items-center space-x-3 text-xs text-slate-600 cursor-pointer">
-                <input type="checkbox" defaultChecked className="w-4 h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400" />
-                <span className="font-light">{t('settings', 'rem_2')}</span>
+              <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-650 cursor-pointer p-3 sm:p-1 hover:bg-slate-50 border border-stone-100/50 sm:border-0 rounded-xl transition-all min-h-[44px]">
+                <input type="checkbox" defaultChecked className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400" />
+                <span className="font-medium text-slate-700">{t('settings', 'rem_2')}</span>
               </label>
 
-              <label className="flex items-center space-x-3 text-xs text-slate-600 cursor-pointer">
-                <input type="checkbox" defaultChecked className="w-4 h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400" />
-                <span className="font-light">{t('settings', 'rem_3')}</span>
+              <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-650 cursor-pointer p-3 sm:p-1 hover:bg-slate-50 border border-stone-100/50 sm:border-0 rounded-xl transition-all min-h-[44px]">
+                <input type="checkbox" defaultChecked className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400" />
+                <span className="font-medium text-slate-700">{t('settings', 'rem_3')}</span>
               </label>
             </div>
           </div>
 
           {/* Erase Sandbox Memory Dangerous zone */}
-          <div className="p-6 rounded-3xl bg-[#FFF5F5] border border-[#FFD2D2] space-y-4 text-left">
+          <div className="p-6 rounded-3xl bg-[#FFF5F5] border border-[#FFD2D2] space-y-4 text-left font-sans">
             <div className="flex items-center space-x-2 text-rose-500">
               <Trash2 className="w-4 h-4" />
               <h3 className="font-serif text-base font-semibold">{t('settings', 'crisis_title')}</h3>
             </div>
 
-            <p className="text-xs text-slate-600 font-light leading-relaxed">
+            <p className="text-sm sm:text-xs text-slate-600 font-light leading-relaxed">
               {t('settings', 'crisis_desc')}
             </p>
 
@@ -218,7 +210,7 @@ export default function SettingsProfile({ user, onUpdateUser, onClearData }: Set
                   onClearData();
                 }
               }}
-              className="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-semibold transition active:scale-95 cursor-pointer flex items-center space-x-1"
+              className="px-5 py-3 sm:px-4 sm:py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-sm sm:text-xs font-semibold transition active:scale-95 cursor-pointer flex items-center justify-center space-x-1 min-h-[44px]"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>{t('settings', 'btn_erase')}</span>

@@ -169,7 +169,7 @@ export default function JournalSection({ entries, onAddEntry, onDeleteEntry }: J
         </div>
 
         {/* Categories filters */}
-        <div className="flex space-x-1.5 overflow-x-auto pb-1 max-w-full font-sans scrollbar-none">
+        <div className="flex space-x-2 overflow-x-auto pb-2 max-w-full font-sans scrollbar-none">
           {['All', 'Overthinking', 'Burnout', 'Self-Love', 'Gratitude', 'Deep Thoughts', 'General'].map((cat) => {
             const active = activeCategory === cat;
             const label = cat === 'All' 
@@ -179,10 +179,10 @@ export default function JournalSection({ entries, onAddEntry, onDeleteEntry }: J
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat as any)}
-                className={`text-xs px-3.5 py-2.5 rounded-full border transition-all cursor-pointer whitespace-nowrap ${
+                className={`text-sm sm:text-xs px-5 py-3 sm:px-3.5 sm:py-2.5 rounded-full border transition-all cursor-pointer whitespace-nowrap min-h-[44px] ${
                   active 
-                    ? 'bg-[#3F2B36] text-[#FEFDFB] border-[#3F2B36]' 
-                    : 'bg-white/70 border-slate-100 text-slate-600 hover:border-purple-200'
+                    ? 'bg-[#3F2B36] text-[#FEFDFB] border-[#3F2B36] font-semibold shadow-xs' 
+                    : 'bg-white/80 border-slate-150 text-slate-705 hover:border-purple-200'
                 }`}
               >
                 {label}
@@ -293,32 +293,30 @@ export default function JournalSection({ entries, onAddEntry, onDeleteEntry }: J
             <div className="flex items-center space-x-2 border-b border-[#FAF6F0] pb-3 mb-4 text-left">
               <Edit3 className="w-4 h-4 text-[#AA7BC3]" />
               <h3 className="font-serif text-lg font-semibold text-[#2D2529]">{t('journal', 'new_entry')}</h3>
-            </div>
-
-            <form onSubmit={handleCreateEntry} className="space-y-4 text-left">
+            </div>            <form onSubmit={handleCreateEntry} className="space-y-4 text-left">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5 col-span-2 sm:col-span-1">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{language === 'id' ? 'Judul Halaman' : 'Entry Title'}</label>
+                  <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">{language === 'id' ? 'Judul Halaman' : 'Entry Title'}</label>
                   <input
                     type="text"
                     required
                     placeholder={t('journal', 'entry_title')}
                     value={newTitle}
                     onChange={(e) => setNewTitle(e.target.value)}
-                    className="w-full text-xs p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC]"
+                    className="w-full text-sm sm:text-xs p-3.5 sm:p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] h-12 sm:h-auto"
                   />
                 </div>
                 <div className="space-y-1.5 col-span-2 sm:col-span-1">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('journal', 'entry_category')}</label>
+                  <label className="text-xs sm:text-[10px] font-bold text-slate-[#404040]/70 uppercase tracking-widest">{t('journal', 'entry_category')}</label>
                   <select
                     value={newCategory}
                     onChange={(e) => setNewCategory(e.target.value as any)}
-                    className="w-full text-xs p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] h-10.5"
+                    className="w-full text-sm sm:text-xs p-3 border border-slate-100 rounded-xl bg-[#FAF6F0]/50 focus:outline-[#C084FC] h-12 sm:h-10.5"
                   >
                     <option value="General">{t('journal', 'cat_General')}</option>
                     <option value="Overthinking">{t('journal', 'cat_Overthinking')}</option>
                     <option value="Burnout">{t('journal', 'cat_Burnout')}</option>
-                    <option value="Self-Love">{t('journal', 'cat_SelfLove')}</option>
+                    <option value="Self-Love">{t('journal', 'cat_Self-Love')}</option>
                     <option value="Gratitude">{t('journal', 'cat_Gratitude')}</option>
                     <option value="Deep Thoughts">{t('journal', 'cat_DeepThoughts')}</option>
                   </select>
@@ -326,41 +324,41 @@ export default function JournalSection({ entries, onAddEntry, onDeleteEntry }: J
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{language === 'id' ? 'Isi Luapan Pikiran Rahasia' : 'Raw Unedited Thoughts'}</label>
+                <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">{language === 'id' ? 'Isi Luapan Pikiran Rahasia' : 'Raw Unedited Thoughts'}</label>
                 <textarea
                   required
                   placeholder={t('journal', 'entry_content')}
                   rows={5}
                   value={newContent}
                   onChange={(e) => setNewContent(e.target.value)}
-                  className="w-full text-xs p-4 border border-slate-100 rounded-xl focus:outline-[#C084FC]"
+                  className="w-full text-sm sm:text-xs p-4 border border-slate-100 rounded-xl focus:outline-[#C084FC]"
                 />
               </div>
 
               {/* Private Code settings */}
               <div className="bg-[#FAF6F0] p-4 rounded-2xl border border-dashed border-purple-200">
-                <label className="flex items-center space-x-2.5 cursor-pointer">
+                <label className="flex items-center space-x-3 cursor-pointer p-1">
                   <input 
                     type="checkbox" 
                     checked={isPrivateInput}
                     onChange={(e) => setIsPrivateInput(e.target.checked)}
-                    className="w-4 h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400"
+                    className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 focus:ring-purple-400 accent-purple-400"
                   />
                   <div>
-                    <p className="text-xs font-semibold text-slate-700">{t('journal', 'privacy_lock')}</p>
-                    <p className="text-[10px] text-slate-400">{t('journal', 'privacy_private')}</p>
+                    <p className="text-sm sm:text-xs font-semibold text-slate-700">{t('journal', 'privacy_lock')}</p>
+                    <p className="text-xs sm:text-[10px] text-slate-400">{t('journal', 'privacy_private')}</p>
                   </div>
                 </label>
 
                 {isPrivateInput && (
-                  <div className="mt-3.5 space-y-1.5 animate-fade-in text-left">
-                    <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-wider">{language === 'id' ? 'Sandi PIN 4 Angka:' : 'Specify 4-digit Lock PIN:'}</span>
+                  <div className="mt-3.5 space-y-2 animate-fade-in text-left">
+                    <span className="text-xs sm:text-[9px] font-semibold text-slate-500 uppercase tracking-wider block">{language === 'id' ? 'Sandi PIN 4 Angka:' : 'Specify 4-digit Lock PIN:'}</span>
                     <input
                       type="text"
                       maxLength={4}
                       value={pinInput}
                       onChange={(e) => setPinInput(e.target.value.replace(/\D/g, ''))}
-                      className="w-24 text-center font-mono font-bold tracking-widest bg-white border border-slate-200 p-2 rounded-xl text-xs"
+                      className="w-28 text-center font-mono font-bold tracking-widest bg-white border border-slate-200 p-3 sm:p-2 rounded-xl text-sm sm:text-xs"
                     />
                   </div>
                 )}
@@ -370,13 +368,13 @@ export default function JournalSection({ entries, onAddEntry, onDeleteEntry }: J
                 <button
                   type="button"
                   onClick={() => setShowAddForm(false)}
-                  className="px-4 py-2 border border-slate-200 hover:bg-slate-50 rounded-full text-xs text-slate-600 transition cursor-pointer"
+                  className="px-5 py-3 sm:px-4 sm:py-2 border border-slate-200 hover:bg-slate-50 rounded-full text-sm sm:text-xs text-slate-600 transition cursor-pointer min-h-[44px]"
                 >
                   {language === 'id' ? 'Batal' : 'Cancel'}
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-[#3F2B36] hover:bg-[#523A48] text-white rounded-full text-xs font-semibold transition cursor-pointer"
+                  className="px-6 py-3 sm:px-6 sm:py-2 bg-[#3F2B36] hover:bg-[#523A48] text-white rounded-full text-sm sm:text-xs font-semibold transition cursor-pointer min-h-[44px]"
                 >
                   {t('journal', 'btn_save')}
                 </button>

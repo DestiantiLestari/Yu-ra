@@ -348,7 +348,7 @@ export default function HealingSpace() {
               setBreathPhase('Inhale');
               setPhaseSecondsLeft(4);
             }}
-            className={`w-full max-w-xs py-3 rounded-full text-xs font-medium tracking-wide shadow-3xs transition-all duration-300 relative z-10 cursor-pointer ${
+            className={`w-full max-w-xs py-4 sm:py-3 rounded-full text-sm sm:text-xs font-semibold tracking-wide shadow-3xs transition-all duration-300 relative z-10 cursor-pointer min-h-[44px] flex items-center justify-center ${
               breathingActive 
                 ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-rose-100' 
                 : 'bg-[#3F2B36] hover:bg-[#523A48] text-white shadow-purple-100'
@@ -361,19 +361,19 @@ export default function HealingSpace() {
         {/* Right Side Column (Ambient sounds and affirmations) */}
         <div className="lg:col-span-2 space-y-8 flex flex-col justify-between text-left">
           
-          {/* Web Audio Pure frequency Generator panel */}
+          {/* Web Pure frequency Generator panel */}
           <div className="bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-white/60 shadow-xs space-y-5">
             <div>
               <div className="flex items-center space-x-2">
                 <Music className="w-4 h-4 text-purple-400" />
                 <h3 className="font-serif text-lg font-medium text-[#2D2529]">{t('healing', 'audio_title')}</h3>
               </div>
-              <p className="text-xs text-slate-400 font-light mt-1">
+              <p className="text-sm sm:text-xs text-slate-500 font-light mt-1">
                 {t('healing', 'audio_desc')}
               </p>
             </div>
 
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {[
                 { id: 'rain', name: t('healing', 'trk_rain'), icon: CloudRain, color: 'hover:border-sky-300 hover:bg-sky-50/20' },
                 { id: 'harp', name: t('healing', 'trk_harp'), icon: Sparkle, color: 'hover:border-purple-300 hover:bg-purple-50/20' },
@@ -386,17 +386,17 @@ export default function HealingSpace() {
                   <button
                     key={trk.id}
                     onClick={() => toggleTrack(trk.id)}
-                    className={`w-full p-3.5 rounded-2xl border text-left flex items-center justify-between transition-all duration-300 cursor-pointer ${
+                    className={`w-full p-4 sm:p-3.5 rounded-2xl border text-left flex items-center justify-between transition-all duration-300 cursor-pointer min-h-[52px] ${
                       playing 
-                        ? 'bg-[#3F2B36] text-white border-[#3F2B36]' 
+                        ? 'bg-[#3F2B36] text-white border-[#3F2B36] font-bold shadow-md' 
                         : `bg-white/80 border-slate-100 text-slate-700 ${trk.color}`
                     }`}
                   >
                     <div className="flex items-center space-x-3 text-left">
-                      <div className={`p-1.5 rounded-lg ${playing ? 'bg-white/10' : 'bg-slate-50'}`}>
+                      <div className={`p-2 rounded-lg ${playing ? 'bg-white/10' : 'bg-slate-50'}`}>
                         <Icon className="w-4 h-4" />
                       </div>
-                      <span className="text-xs font-medium">{trk.name}</span>
+                      <span className="text-sm sm:text-xs font-semibold">{trk.name}</span>
                     </div>
 
                     <div>
@@ -406,7 +406,7 @@ export default function HealingSpace() {
                           <div className="w-0.5 h-3.5 bg-emerald-300 rounded-full animate-pulse" />
                           <div className="w-0.5 h-2.5 bg-emerald-300 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
                           <div className="w-0.5 h-4 bg-emerald-300 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                          <Pause className="w-3.5 h-3.5 ml-2 text-rose-300" />
+                          <Pause className="w-3.5 h-3.5 ml-2 text-rose-300 animate-pulse" />
                         </div>
                       ) : (
                         <Play className="w-3.5 h-3.5 text-slate-400" />
@@ -418,36 +418,38 @@ export default function HealingSpace() {
             </div>
 
             {/* Volume slider */}
-            <div className="flex items-center space-x-3 pt-2.5 border-t border-slate-100/80">
+            <div className="flex items-center space-x-3 pt-3.5 border-t border-slate-100/80">
               <Volume2 className="w-4 h-4 text-slate-400 shrink-0" />
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.05"
-                value={volume}
-                onChange={(e) => setVolume(Number(e.target.value))}
-                className="flex-1 accent-purple-400 h-1 bg-slate-100 rounded-full"
-                title={`${t('healing', 'vol')}: ${Math.round(volume * 100)}%`}
-              />
-              <span className="text-[10px] font-mono text-slate-400 font-medium">{Math.round(volume * 100)}%</span>
+              <div className="flex-1 py-2">
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value={volume}
+                  onChange={(e) => setVolume(Number(e.target.value))}
+                  className="w-full accent-purple-400 h-2 bg-slate-100 rounded-full cursor-pointer"
+                  title={`${t('healing', 'vol')}: ${Math.round(volume * 100)}%`}
+                />
+              </div>
+              <span className="text-xs font-mono text-slate-500 font-bold">{Math.round(volume * 100)}%</span>
             </div>
           </div>
 
           {/* Calm Card affirmative draw deck */}
           <div className="bg-[#FAF6F0] p-6 rounded-3xl border border-white flex-1 flex flex-col justify-between">
             <div>
-              <span className="text-[9px] uppercase tracking-widest font-bold text-purple-400 block mb-2.5">
+              <span className="text-xs sm:text-[9px] uppercase tracking-widest font-bold text-purple-400 block mb-2.5">
                 🌸 {t('healing', 'focus_deck')}
               </span>
-              <p className="text-xs text-slate-600 italic font-light leading-relaxed">
+              <p className="text-sm sm:text-xs text-slate-600 italic font-light leading-relaxed">
                 &ldquo;{currentAffi}&rdquo;
               </p>
             </div>
             
             <button
               onClick={drawCard}
-              className="mt-5 w-full py-2 bg-white hover:bg-slate-50 border border-purple-200 text-purple-600 text-xs font-semibold rounded-xl transition duration-300 shadow-3xs cursor-pointer active:scale-98 flex items-center justify-center space-x-1"
+              className="mt-5 w-full py-3.5 sm:py-2 bg-white hover:bg-slate-50 border border-purple-200 text-purple-600 text-xs sm:text-[11px] font-bold rounded-xl transition duration-300 shadow-3xs cursor-pointer active:scale-98 flex items-center justify-center space-x-1 min-h-[44px]"
             >
               <Sparkles className="w-3.5 h-3.5 text-purple-400" />
               <span>{t('healing', 'pull_card')}</span>

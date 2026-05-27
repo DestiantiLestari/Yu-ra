@@ -107,7 +107,7 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
 
             {/* Step 1: Mood Choice */}
             <div className="space-y-3">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{t('mood', 'step_1')}</label>
+              <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{t('mood', 'step_1')}</label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {(Object.keys(MOOD_EMOJIS) as MoodType[]).map((mKey) => {
                   const mObj = MOOD_EMOJIS[mKey];
@@ -117,15 +117,15 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
                       key={mKey}
                       type="button"
                       onClick={() => setSelectedMood(mKey)}
-                      className={`p-4 rounded-2xl border transition-all duration-300 text-center cursor-pointer flex flex-col items-center justify-center ${
+                      className={`p-5 sm:p-4 rounded-2xl border transition-all duration-300 text-center cursor-pointer flex flex-col items-center justify-center ${
                         isSelected 
-                          ? 'bg-[#3F2B36] border-[#3F2B36] text-white shadow-md scale-102' 
+                          ? 'bg-[#3F2B36] border-[#3F2B36] text-white shadow-md scale-102 font-bold' 
                           : 'bg-white/80 hover:bg-slate-50 border-stone-200/50 hover:border-[#D8B4FE]'
                       }`}
                     >
-                      <span className="text-2xl mb-1.5 filter drop-shadow-3xs">{mObj.char}</span>
-                      <span className="text-[11px] font-semibold tracking-tight block">{mObj.name}</span>
-                      <span className={`text-[8px] transform mt-0.5 block leading-tight font-light ${isSelected ? 'text-purple-200' : 'text-slate-400'}`}>{mObj.desc}</span>
+                      <span className="text-3xl sm:text-2xl mb-2 filter drop-shadow-3xs">{mObj.char}</span>
+                      <span className="text-xs sm:text-[11px] font-bold tracking-tight block">{mObj.name}</span>
+                      <span className={`text-[10px] sm:text-[8px] transform mt-1 block leading-tight font-light ${isSelected ? 'text-purple-200' : 'text-slate-400'}`}>{mObj.desc}</span>
                     </button>
                   );
                 })}
@@ -134,19 +134,21 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
 
             {/* Step 2: Sensation Intensity Level Slider */}
             <div className="space-y-3 pt-2">
-              <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              <div className="flex items-center justify-between text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                 <label>{t('mood', 'step_2')}</label>
-                <span className="font-mono text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">{sensationLevel} / 10</span>
+                <span className="font-mono text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100 font-semibold">{sensationLevel} / 10</span>
               </div>
-              <input
-                type="range"
-                min="1"
-                max="10"
-                value={sensationLevel}
-                onChange={(e) => setSensationLevel(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#FAF6F0] rounded-full appearance-none cursor-pointer accent-[#A47CB5]"
-              />
-              <div className="flex justify-between text-[10px] text-slate-400 font-light">
+              <div className="py-2.5">
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  value={sensationLevel}
+                  onChange={(e) => setSensationLevel(Number(e.target.value))}
+                  className="w-full h-2.5 sm:h-1.5 bg-[#FAF6F0] rounded-full appearance-none cursor-pointer accent-[#A47CB5]"
+                />
+              </div>
+              <div className="flex justify-between text-[11px] sm:text-[10px] text-slate-400 font-light">
                 <span>{t('mood', 'sensation_light')}</span>
                 <span>{t('mood', 'sensation_heavy')}</span>
               </div>
@@ -154,8 +156,8 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
 
             {/* Step 3: Triggering factors/stressors */}
             <div className="space-y-3 pt-2 text-left">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{t('mood', 'step_3')}</label>
-              <div className="flex flex-wrap gap-2">
+              <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest block">{t('mood', 'step_3')}</label>
+              <div className="flex flex-wrap gap-2.5">
                 {STRESSOR_OPTIONS.map((opt) => {
                   const active = selectedStressors.includes(opt.key);
                   return (
@@ -163,7 +165,7 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
                       key={opt.key}
                       type="button"
                       onClick={() => toggleStressor(opt.key)}
-                      className={`text-xs py-1.5 px-3.5 rounded-full border cursor-pointer transition-all ${
+                      className={`text-sm sm:text-xs py-2.5 px-4 sm:py-1.5 sm:px-3.5 rounded-full border cursor-pointer transition-all ${
                         active 
                           ? 'bg-purple-100 border-[#C084FC] text-purple-700 font-semibold shadow-3xs' 
                           : 'bg-white hover:bg-slate-50 border-stone-200/50 text-slate-600'
@@ -178,7 +180,7 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
 
             {/* Step 4: Notes */}
             <div className="space-y-3 pt-2">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block flex items-center gap-1">
+              <label className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest block flex items-center gap-1">
                 <AlignLeft className="w-3.5 h-3.5" />
                 <span>{t('mood', 'step_4')}</span>
               </label>
@@ -186,7 +188,7 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
                 placeholder={t('mood', 'placeholder')}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full p-3 bg-[#FAF6F0]/60 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:border-purple-300 text-xs text-slate-700 font-light"
+                className="w-full p-4 bg-[#FAF6F0]/60 border border-slate-100 rounded-2xl focus:bg-white focus:outline-none focus:border-purple-300 text-sm sm:text-xs text-slate-700 font-light"
                 rows={3}
               />
             </div>
@@ -195,7 +197,7 @@ export default function MoodTracker({ moodHistory = [], onAddMood, onDeleteMood 
             <button
               type="submit"
               disabled={!selectedMood}
-              className={`w-full py-3.5 rounded-xl text-xs font-semibold shadow-xs flex items-center justify-center space-x-2 cursor-pointer transition-all ${
+              className={`w-full py-4 sm:py-3.5 rounded-xl text-sm sm:text-xs font-bold shadow-xs flex items-center justify-center space-x-2 cursor-pointer transition-all min-h-[44px] ${
                 selectedMood 
                   ? 'bg-[#3F2B36] hover:bg-[#523A48] text-white hover:scale-[1.01]' 
                   : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'

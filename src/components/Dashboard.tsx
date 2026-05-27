@@ -178,13 +178,13 @@ export default function Dashboard({ user, onUpdateUser, onNavigate, totalMoodLog
               <div className="flex gap-2">
                 <button
                   onClick={handleWaterDrink}
-                  className="flex-1 py-2 rounded-xl bg-gradient-to-r from-sky-400/90 to-sky-500/90 hover:from-sky-500 hover:to-sky-600 text-white text-xs font-medium transition-all shadow-3xs hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  className="flex-1 py-3 sm:py-2 rounded-xl bg-gradient-to-r from-sky-400/90 to-sky-500/90 hover:from-sky-500 hover:to-sky-600 text-white text-xs sm:text-[11px] font-semibold transition-all shadow-3xs hover:scale-[1.02] active:scale-[0.98] cursor-pointer min-h-[44px] flex items-center justify-center"
                 >
                   {t('dashboard', 'log_glass')}
                 </button>
                 <button
                   onClick={handleWaterReset}
-                  className="p-2 border border-slate-200 hover:bg-slate-50 text-slate-400 hover:text-slate-600 rounded-xl transition-all cursor-pointer"
+                  className="p-3 sm:p-2 border border-slate-200 hover:bg-slate-50 text-slate-400 hover:text-slate-600 rounded-xl transition-all cursor-pointer min-h-[44px] flex items-center justify-center"
                   title="Reset count"
                 >
                   {t('dashboard', 'reset')}
@@ -200,20 +200,20 @@ export default function Dashboard({ user, onUpdateUser, onNavigate, totalMoodLog
                     <Compass className="w-4 h-4 text-rose-400" />
                     <h3 className="font-serif text-lg font-medium text-[#2D2529]">{t('dashboard', 'cocoon_title')}</h3>
                   </div>
-                  <span className="text-[9px] uppercase tracking-widest font-semibold text-rose-400 bg-white px-2 py-0.5 rounded-full border border-rose-100">{t('dashboard', 'cocoon_tag')}</span>
+                  <span className="text-xs sm:text-[9px] uppercase tracking-widest font-bold text-rose-400 bg-white px-2.5 py-1 rounded-full border border-rose-100">{t('dashboard', 'cocoon_tag')}</span>
                 </div>
-                <p className="text-xs text-[#8F747F] font-light leading-relaxed mb-4">
+                <p className="text-sm sm:text-xs text-[#8F747F] font-light leading-relaxed mb-4">
                   {t('dashboard', 'cocoon_desc')}
                 </p>
-                <div className="flex flex-wrap gap-1.5 mb-2">
-                  <span className="text-[10px] bg-white/80 border border-rose-100 rounded-md px-2 py-0.5 text-rose-500">{t('dashboard', 'cocoon_bubble')}</span>
-                  <span className="text-[10px] bg-white/80 border border-rose-100 rounded-md px-2 py-0.5 text-rose-500">{t('dashboard', 'cocoon_lofi')}</span>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <span className="text-[11px] sm:text-[10px] bg-white/80 border border-rose-100 rounded-md px-2.5 py-1 text-rose-500 font-medium">{t('dashboard', 'cocoon_bubble')}</span>
+                  <span className="text-[11px] sm:text-[10px] bg-white/80 border border-rose-100 rounded-md px-2.5 py-1 text-rose-500 font-medium">{t('dashboard', 'cocoon_lofi')}</span>
                 </div>
               </div>
 
               <button
                 onClick={() => onNavigate('healing')}
-                className="w-full py-2.5 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 text-white text-xs font-medium transition-all shadow-3xs hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                className="w-full py-3 sm:py-2.5 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 text-white text-sm sm:text-xs font-semibold transition-all shadow-3xs hover:scale-[1.02] active:scale-[0.98] cursor-pointer min-h-[44px] flex items-center justify-center"
               >
                 {t('dashboard', 'cocoon_btn')}
               </button>
@@ -224,15 +224,15 @@ export default function Dashboard({ user, onUpdateUser, onNavigate, totalMoodLog
           <div className="bg-white/40 border border-white/60 p-6 rounded-3xl grid grid-cols-3 gap-4 text-center select-none">
             <div>
               <p className="text-2xl font-serif font-light text-[#2D2529]">{totalMoodLogs}</p>
-              <p className="text-[10px] text-[#8C7A84] uppercase tracking-wider font-semibold mt-1">{t('dashboard', 'mood_logs_stat')}</p>
+              <p className="text-xs sm:text-[10px] text-[#8C7A84] uppercase tracking-wider font-semibold mt-1">{t('dashboard', 'mood_logs_stat')}</p>
             </div>
             <div className="border-l border-r border-[#E9E3FF]/30">
               <p className="text-2xl font-serif font-light text-[#2D2529]">{totalJournalEntries}</p>
-              <p className="text-[10px] text-[#8C7A84] uppercase tracking-wider font-semibold mt-1">{t('dashboard', 'deep_journals_stat')}</p>
+              <p className="text-xs sm:text-[10px] text-[#8C7A84] uppercase tracking-wider font-semibold mt-1">{t('dashboard', 'deep_journals_stat')}</p>
             </div>
             <div>
               <p className="text-2xl font-serif font-light text-sky-500">{user.waterIntake} / 8</p>
-              <p className="text-[10px] text-[#8C7A84] uppercase tracking-wider font-semibold mt-1">{t('dashboard', 'hydrations_stat')}</p>
+              <p className="text-xs sm:text-[10px] text-[#8C7A84] uppercase tracking-wider font-semibold mt-1">{t('dashboard', 'hydrations_stat')}</p>
             </div>
           </div>
 
@@ -247,73 +247,73 @@ export default function Dashboard({ user, onUpdateUser, onNavigate, totalMoodLog
               <h3 className="font-serif text-lg font-medium text-[#2D2529]">{t('dashboard', 'rituals_title')}</h3>
               <span className="text-xs font-mono text-[#aa84fc] bg-[#F5EDF8] px-2.5 py-0.5 rounded-full border border-purple-100 font-medium">{progressPercent}%</span>
             </div>
-            <p className="text-xs text-[#82717C] font-light leading-relaxed mb-5">
+            <p className="text-sm sm:text-xs text-[#82717C] font-light leading-relaxed mb-5">
               {t('dashboard', 'rituals_desc')}
             </p>
 
             <div className="space-y-3.5 text-left">
-              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors">
+              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-3.5 sm:p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors min-h-[48px]">
                 <input 
                   type="checkbox" 
                   checked={user.dailyChecklist.moodLog} 
                   onChange={() => toggleChecklist('moodLog')}
-                  className="w-4 h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
+                  className="w-5 h-5 sm:w-4 sm:h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
                 />
-                <div className="text-left">
-                  <p className={`text-xs font-medium ${user.dailyChecklist.moodLog ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_mood')}</p>
-                  <p className="text-[10px] text-slate-400">{t('dashboard', 'ritual_mood_sub')}</p>
+                <div className="text-left flex-1">
+                  <p className={`text-sm sm:text-xs font-semibold ${user.dailyChecklist.moodLog ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_mood')}</p>
+                  <p className="text-xs sm:text-[10px] text-slate-400">{t('dashboard', 'ritual_mood_sub')}</p>
                 </div>
               </label>
 
-              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors">
+              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-3.5 sm:p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors min-h-[48px]">
                 <input 
                   type="checkbox" 
                   checked={user.dailyChecklist.journal} 
                   onChange={() => toggleChecklist('journal')}
-                  className="w-4 h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
+                  className="w-5 h-5 sm:w-4 sm:h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
                 />
-                <div className="text-left">
-                  <p className={`text-xs font-medium ${user.dailyChecklist.journal ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_journal')}</p>
-                  <p className="text-[10px] text-slate-400">{t('dashboard', 'ritual_journal_sub')}</p>
+                <div className="text-left flex-1">
+                  <p className={`text-sm sm:text-xs font-semibold ${user.dailyChecklist.journal ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_journal')}</p>
+                  <p className="text-xs sm:text-[10px] text-slate-400">{t('dashboard', 'ritual_journal_sub')}</p>
                 </div>
               </label>
 
-              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors">
+              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-3.5 sm:p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors min-h-[48px]">
                 <input 
                   type="checkbox" 
                   checked={user.dailyChecklist.breathe} 
                   onChange={() => toggleChecklist('breathe')}
-                  className="w-4 h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
+                  className="w-5 h-5 sm:w-4 sm:h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
                 />
-                <div className="text-left">
-                  <p className={`text-xs font-medium ${user.dailyChecklist.breathe ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_breath')}</p>
-                  <p className="text-[10px] text-slate-400">{t('dashboard', 'ritual_breath_sub')}</p>
+                <div className="text-left flex-1">
+                  <p className={`text-sm sm:text-xs font-semibold ${user.dailyChecklist.breathe ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_breath')}</p>
+                  <p className="text-xs sm:text-[10px] text-slate-400">{t('dashboard', 'ritual_breath_sub')}</p>
                 </div>
               </label>
 
-              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors">
+              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-3.5 sm:p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors min-h-[48px]">
                 <input 
                   type="checkbox" 
                   checked={user.dailyChecklist.hydrate} 
                   onChange={() => toggleChecklist('hydrate')}
-                  className="w-4 h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
+                  className="w-5 h-5 sm:w-4 sm:h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
                 />
-                <div className="text-left">
-                  <p className={`text-xs font-medium ${user.dailyChecklist.hydrate ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_hydrate')}</p>
-                  <p className="text-[10px] text-slate-400">{t('dashboard', 'ritual_hydrate_sub')}</p>
+                <div className="text-left flex-1">
+                  <p className={`text-sm sm:text-xs font-semibold ${user.dailyChecklist.hydrate ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_hydrate')}</p>
+                  <p className="text-xs sm:text-[10px] text-slate-400">{t('dashboard', 'ritual_hydrate_sub')}</p>
                 </div>
               </label>
 
-              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors">
+              <label className="flex items-center space-x-3 bg-[#FAF6F0]/60 hover:bg-[#FAF6F0] p-3.5 sm:p-2.5 rounded-xl border border-white/40 cursor-pointer transition-colors min-h-[48px]">
                 <input 
                   type="checkbox" 
                   checked={user.dailyChecklist.selfCare} 
                   onChange={() => toggleChecklist('selfCare')}
-                  className="w-4 h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
+                  className="w-5 h-5 sm:w-4 sm:h-4 rounded text-[#A47CB5] focus:ring-[#A47CB5] accent-purple-400"
                 />
-                <div className="text-left">
-                  <p className={`text-xs font-medium ${user.dailyChecklist.selfCare ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_selfcare')}</p>
-                  <p className="text-[10px] text-slate-400">{t('dashboard', 'ritual_selfcare_sub')}</p>
+                <div className="text-left flex-1">
+                  <p className={`text-sm sm:text-xs font-semibold ${user.dailyChecklist.selfCare ? 'line-through text-slate-400' : 'text-slate-700'}`}>{t('dashboard', 'ritual_selfcare')}</p>
+                  <p className="text-xs sm:text-[10px] text-slate-400">{t('dashboard', 'ritual_selfcare_sub')}</p>
                 </div>
               </label>
             </div>
@@ -340,63 +340,63 @@ export default function Dashboard({ user, onUpdateUser, onNavigate, totalMoodLog
 
             {/* Quick interactive expand checklist */}
             {showBurnoutCheck && (
-              <div className="mt-4 space-y-3.5 pt-3 border-t border-[#F5EDF8] animate-fade-in text-left">
-                <p className="text-[11px] font-semibold text-[#8C7A84] uppercase tracking-wide">{t('dashboard', 'select_stressors')}</p>
+              <div className="mt-4 space-y-3.5 pt-3 border-t border-[#F5EDF8] animate-fade-in text-left font-sans">
+                <p className="text-xs sm:text-[11px] font-bold text-[#8C7A84] uppercase tracking-wide">{t('dashboard', 'select_stressors')}</p>
                 
                 <div className="space-y-2.5">
-                  <label className="flex items-start space-x-2.5 text-xs text-slate-700 cursor-pointer">
+                  <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-700 cursor-pointer p-3 sm:p-2 bg-slate-50/50 rounded-xl border border-stone-100 hover:bg-slate-50 min-h-[44px]">
                     <input 
                       type="checkbox" 
                       checked={user.stressChecklist.feelingExhausted} 
                       onChange={() => toggleStressCheck('feelingExhausted')}
-                      className="mt-0.5 w-3.5 h-3.5 rounded text-purple-400 accent-purple-400"
+                      className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 accent-purple-400"
                     />
-                    <span className="font-light">{t('dashboard', 'stressor_exhausted')}</span>
+                    <span className="font-medium text-slate-700">{t('dashboard', 'stressor_exhausted')}</span>
                   </label>
 
-                  <label className="flex items-start space-x-2.5 text-xs text-slate-700 cursor-pointer">
+                  <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-700 cursor-pointer p-3 sm:p-2 bg-slate-50/50 rounded-xl border border-stone-100 hover:bg-slate-50 min-h-[44px]">
                     <input 
                       type="checkbox" 
                       checked={user.stressChecklist.frequentHeadaches} 
                       onChange={() => toggleStressCheck('frequentHeadaches')}
-                      className="mt-0.5 w-3.5 h-3.5 rounded text-purple-400 accent-purple-400"
+                      className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 accent-purple-400"
                     />
-                    <span className="font-light">{t('dashboard', 'stressor_headaches')}</span>
+                    <span className="font-medium text-slate-700">{t('dashboard', 'stressor_headaches')}</span>
                   </label>
 
-                  <label className="flex items-start space-x-2.5 text-xs text-slate-700 cursor-pointer">
+                  <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-700 cursor-pointer p-3 sm:p-2 bg-slate-50/50 rounded-xl border border-stone-100 hover:bg-slate-50 min-h-[44px]">
                     <input 
                       type="checkbox" 
                       checked={user.stressChecklist.procrastination} 
                       onChange={() => toggleStressCheck('procrastination')}
-                      className="mt-0.5 w-3.5 h-3.5 rounded text-purple-400 accent-purple-400"
+                      className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 accent-purple-400"
                     />
-                    <span className="font-light">{t('dashboard', 'stressor_procrastination')}</span>
+                    <span className="font-medium text-slate-700">{t('dashboard', 'stressor_procrastination')}</span>
                   </label>
 
-                  <label className="flex items-start space-x-2.5 text-xs text-slate-700 cursor-pointer">
+                  <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-700 cursor-pointer p-3 sm:p-2 bg-slate-50/50 rounded-xl border border-stone-100 hover:bg-slate-50 min-h-[44px]">
                     <input 
                       type="checkbox" 
                       checked={user.stressChecklist.isolation} 
                       onChange={() => toggleStressCheck('isolation')}
-                      className="mt-0.5 w-3.5 h-3.5 rounded text-purple-400 accent-purple-400"
+                      className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 accent-purple-400"
                     />
-                    <span className="font-light">{t('dashboard', 'stressor_isolation')}</span>
+                    <span className="font-medium text-slate-700">{t('dashboard', 'stressor_isolation')}</span>
                   </label>
 
-                  <label className="flex items-start space-x-2.5 text-xs text-slate-700 cursor-pointer">
+                  <label className="flex items-center space-x-3 text-sm sm:text-xs text-slate-700 cursor-pointer p-3 sm:p-2 bg-slate-50/50 rounded-xl border border-stone-100 hover:bg-slate-50 min-h-[44px]">
                     <input 
                       type="checkbox" 
                       checked={user.stressChecklist.sleepIssues} 
                       onChange={() => toggleStressCheck('sleepIssues')}
-                      className="mt-0.5 w-3.5 h-3.5 rounded text-purple-400 accent-purple-400"
+                      className="w-5 h-5 sm:w-4 sm:h-4 rounded text-purple-400 accent-purple-400"
                     />
-                    <span className="font-light">{t('dashboard', 'stressor_sleep')}</span>
+                    <span className="font-medium text-slate-700">{t('dashboard', 'stressor_sleep')}</span>
                   </label>
                 </div>
 
                 <div className="bg-[#FAF6F0] p-3 rounded-2xl border border-white mt-1">
-                  <div className="flex items-center justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                  <div className="flex items-center justify-between text-xs sm:text-[11px] font-semibold text-slate-600 mb-1">
                     <span>{t('dashboard', 'fatigue_point')}:</span>
                     <span>{stressPoints} / 5</span>
                   </div>

@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Sparkles, Compass, Volume2, Music, CloudRain, Wind, Heart, Sparkle } from 'lucide-react';
 import { Affirmation } from '../types';
 import { AFFIRMATIONS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function HealingSpace() {
+  const { t, language } = useLanguage();
+
   // Breathing Bubble State
   const [breathingActive, setBreathingActive] = useState(false);
   const [breathPhase, setBreathPhase] = useState<'Inhale' | 'Hold' | 'Exhale'>('Inhale');
@@ -24,7 +27,12 @@ export default function HealingSpace() {
   }>({});
 
   // Affirmation draw state
-  const [currentAffi, setCurrentAffi] = useState<string>("Take a gentle pause. Let your hands relax, drop your shoulders, and clear your brow.");
+  const [currentAffi, setCurrentAffi] = useState<string>('');
+
+  // Set initial localized check-in affirmation text
+  useEffect(() => {
+    setCurrentAffi(t('healing', 'initial_affi'));
+  }, [language]);
 
   // 1. Box Breathing Interval manager
   useEffect(() => {
@@ -262,17 +270,20 @@ export default function HealingSpace() {
 
   const drawCard = () => {
     const list = AFFIRMATIONS;
-    const drawn = list[Math.floor(Math.random() * list.length)].text;
+    // Filter affirmations by selected locale if values are present, else default
+    const matchingList = list.filter(item => item.language === language);
+    const useList = matchingList.length > 0 ? matchingList : list;
+    const drawn = useList[Math.floor(Math.random() * useList.length)].text;
     setCurrentAffi(drawn);
   };
 
   return (
     <div className="space-y-8">
       {/* Title */}
-      <div className="bg-white/40 border border-white/60 p-6 rounded-3xl backdrop-blur-md">
-        <h2 className="font-serif text-2xl font-semibold text-[#2D2529]">The Soothing Cocoon</h2>
+      <div className="bg-white/40 border border-white/60 p-6 rounded-3xl backdrop-blur-md text-left">
+        <h2 className="font-serif text-2xl font-semibold text-[#2D2529]">{t('healing', 'title')}</h2>
         <p className="text-xs text-[#82717C] mt-1 font-light">
-          A physical pause point designed to drop high cortisol levels, silent panic attacks, and study overthinking.
+          {t('healing', 'desc')}
         </p>
       </div>
 
@@ -286,10 +297,10 @@ export default function HealingSpace() {
 
           <div className="text-center relative z-10 max-w-sm">
             <span className="text-[9px] uppercase tracking-widest font-bold text-rose-400 bg-rose-50 px-3 py-1 rounded-full border border-rose-100">
-              Box Regulator
+              {t('healing', 'regulator_tag')}
             </span>
             <p className="text-xs text-slate-500 font-light mt-3">
-              Stress alters our breathing patterns first. Ground your heartbeat using our 4-4-4 expander loop.
+              {t('healing', 'regulator_desc')}
             </p>
           </div>
 
@@ -309,17 +320,17 @@ export default function HealingSpace() {
             >
               {breathingActive ? (
                 <div className="animate-fade-in space-y-1">
-                  <p className="font-serif text-xl font-semibold text-slate-800 tracking-wide">{breathPhase}</p>
+                  <p className="font-serif text-xl font-semibold text-slate-800 tracking-wide">{t('healing', breathPhase)}</p>
                   <p className="text-2xl font-mono text-[#AA7BC3] font-bold">{phaseSecondsLeft}s</p>
                   <p className="text-[10px] text-slate-400 uppercase tracking-widest leading-none">
-                    {breathPhase === 'Inhale' ? 'Sip air in' : breathPhase === 'Hold' ? 'Rest in pause' : 'Let it go'}
+                    {breathPhase === 'Inhale' ? t('healing', 'sip_air') : breathPhase === 'Hold' ? t('healing', 'rest_pause') : t('healing', 'let_go')}
                   </p>
                 </div>
               ) : (
                 <div className="space-y-1">
                   <Heart className="w-8 h-8 text-rose-300 mx-auto animate-pulse" />
-                  <p className="text-xs font-semibold text-slate-600">Bubble Ready</p>
-                  <p className="text-[10px] text-slate-400 font-light">Press start below</p>
+                  <p className="text-xs font-semibold text-slate-600">{t('healing', 'bubble_ready')}</p>
+                  <p className="text-[10px] text-slate-400 font-light">{t('healing', 'press_start')}</p>
                 </div>
               )}
             </div>
@@ -343,31 +354,31 @@ export default function HealingSpace() {
                 : 'bg-[#3F2B36] hover:bg-[#523A48] text-white shadow-purple-100'
             }`}
           >
-            {breathingActive ? 'Stop Breath Loop' : 'Activate Breath Loop'}
+            {breathingActive ? t('healing', 'btn_stop') : t('healing', 'btn_start')}
           </button>
         </div>
 
         {/* Right Side Column (Ambient sounds and affirmations) */}
-        <div className="lg:col-span-2 space-y-8 flex flex-col justify-between">
+        <div className="lg:col-span-2 space-y-8 flex flex-col justify-between text-left">
           
           {/* Web Audio Pure frequency Generator panel */}
           <div className="bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-white/60 shadow-xs space-y-5">
             <div>
               <div className="flex items-center space-x-2">
                 <Music className="w-4 h-4 text-purple-400" />
-                <h3 className="font-serif text-lg font-medium text-[#2D2529]">Ambient Frequency Player</h3>
+                <h3 className="font-serif text-lg font-medium text-[#2D2529]">{t('healing', 'audio_title')}</h3>
               </div>
               <p className="text-xs text-slate-400 font-light mt-1">
-                Synthesized live in your browser using pure therapeutic soundwaves. Volume slider below.
+                {t('healing', 'audio_desc')}
               </p>
             </div>
 
             <div className="space-y-2.5">
               {[
-                { id: 'rain', name: 'Warm Garden Rain', icon: CloudRain, color: 'hover:border-sky-300 hover:bg-sky-50/20' },
-                { id: 'harp', name: 'Celestial Synth Harp', icon: Sparkle, color: 'hover:border-purple-300 hover:bg-purple-50/20' },
-                { id: 'waves', name: 'Sunset Ocean Waves', icon: Wind, color: 'hover:border-teal-300 hover:bg-teal-50/20' },
-                { id: 'cosmic', name: 'Cosmic Blush Noise', icon: Volume2, color: 'hover:border-pink-300 hover:bg-pink-50/20' }
+                { id: 'rain', name: t('healing', 'trk_rain'), icon: CloudRain, color: 'hover:border-sky-300 hover:bg-sky-50/20' },
+                { id: 'harp', name: t('healing', 'trk_harp'), icon: Sparkle, color: 'hover:border-purple-300 hover:bg-purple-50/20' },
+                { id: 'waves', name: t('healing', 'trk_waves'), icon: Wind, color: 'hover:border-teal-300 hover:bg-teal-50/20' },
+                { id: 'cosmic', name: t('healing', 'trk_cosmic'), icon: Volume2, color: 'hover:border-pink-300 hover:bg-pink-50/20' }
               ].map((trk) => {
                 const playing = playingTrackId === trk.id;
                 const Icon = trk.icon;
@@ -381,7 +392,7 @@ export default function HealingSpace() {
                         : `bg-white/80 border-slate-100 text-slate-700 ${trk.color}`
                     }`}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 text-left">
                       <div className={`p-1.5 rounded-lg ${playing ? 'bg-white/10' : 'bg-slate-50'}`}>
                         <Icon className="w-4 h-4" />
                       </div>
@@ -417,7 +428,7 @@ export default function HealingSpace() {
                 value={volume}
                 onChange={(e) => setVolume(Number(e.target.value))}
                 className="flex-1 accent-purple-400 h-1 bg-slate-100 rounded-full"
-                title={`Volume: ${Math.round(volume * 100)}%`}
+                title={`${t('healing', 'vol')}: ${Math.round(volume * 100)}%`}
               />
               <span className="text-[10px] font-mono text-slate-400 font-medium">{Math.round(volume * 100)}%</span>
             </div>
@@ -427,7 +438,7 @@ export default function HealingSpace() {
           <div className="bg-[#FAF6F0] p-6 rounded-3xl border border-white flex-1 flex flex-col justify-between">
             <div>
               <span className="text-[9px] uppercase tracking-widest font-bold text-purple-400 block mb-2.5">
-                🌸 GENTLE FOCUS DECK
+                🌸 {t('healing', 'focus_deck')}
               </span>
               <p className="text-xs text-slate-600 italic font-light leading-relaxed">
                 &ldquo;{currentAffi}&rdquo;
@@ -439,7 +450,7 @@ export default function HealingSpace() {
               className="mt-5 w-full py-2 bg-white hover:bg-slate-50 border border-purple-200 text-purple-600 text-xs font-semibold rounded-xl transition duration-300 shadow-3xs cursor-pointer active:scale-98 flex items-center justify-center space-x-1"
             >
               <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-              <span>Pull Healing Card</span>
+              <span>{t('healing', 'pull_card')}</span>
             </button>
           </div>
 

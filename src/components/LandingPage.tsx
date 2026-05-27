@@ -1,11 +1,14 @@
 import React from 'react';
-import { Sparkles, Heart, HeartHandshake, Shield, Star, GraduationCap, Flower, ArrowRight } from 'lucide-react';
+import { Sparkles, Heart, Shield, Star, GraduationCap, Flower, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface LandingPageProps {
   onEnterApp: (isSignUp: boolean) => void;
 }
 
 export default function LandingPage({ onEnterApp }: LandingPageProps) {
+  const { language, setLanguage, t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#FAF6F0] via-[#F5EDF8] to-[#FAF6F0] text-[#2D2529] relative overflow-hidden">
       {/* Decorative Blur Background Circles */}
@@ -15,24 +18,39 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
 
       {/* Navigation Header */}
       <header className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between relative z-10">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-10 h-10 rounded-full bg-[#D8B4FE] flex items-center justify-center shadow-sm">
-            <span className="font-serif text-lg font-bold text-white italic">Y</span>
-          </div>
+        <div className="flex items-center space-x-2.5 select-none">
+          <div className="w-10 h-10 rounded-full bg-[#D8B4FE] flex items-center justify-center shadow-sm font-serif text-lg font-bold text-white italic">Y</div>
           <span className="font-serif text-2xl font-semibold tracking-wide text-[#3F2B36]">Yuéra</span>
         </div>
+        
         <div className="flex items-center space-x-6">
+          {/* Landing Header Language Select Pills */}
+          <div className="flex items-center bg-white/70 backdrop-blur-md p-0.5 rounded-full border border-stone-200/50 shadow-3xs">
+            <button 
+              onClick={() => setLanguage('en')}
+              className={`text-[9px] font-semibold py-1 px-2.5 rounded-full transition-all duration-300 cursor-pointer ${language === 'en' ? 'bg-[#3F2B36] text-white shadow-3xs' : 'text-stone-400 hover:text-slate-800'}`}
+            >
+              🇺🇸 EN
+            </button>
+            <button 
+              onClick={() => setLanguage('id')}
+              className={`text-[9px] font-semibold py-1 px-2.5 rounded-full transition-all duration-300 cursor-pointer ${language === 'id' ? 'bg-[#3f2b36] text-white shadow-3xs' : 'text-stone-400 hover:text-slate-800'}`}
+            >
+              🇮🇩 ID
+            </button>
+          </div>
+
           <button 
             onClick={() => onEnterApp(false)} 
-            className="text-sm font-medium hover:text-[#C084FC] transition-colors"
+            className="text-sm font-medium hover:text-[#C084FC] transition-colors cursor-pointer"
           >
-            Sign In
+            {t('landing', 'sign_in')}
           </button>
           <button 
             onClick={() => onEnterApp(true)} 
-            className="text-sm font-medium bg-[#3F2B36] text-white px-5 py-2.5 rounded-full hover:bg-[#523A48] transition-all shadow-sm duration-300"
+            className="text-sm font-medium bg-[#3F2B36] text-white px-5 py-2.5 rounded-full hover:bg-[#523A48] transition-all shadow-sm duration-300 cursor-pointer"
           >
-            Join Yuéra
+            {t('landing', 'join')}
           </button>
         </div>
       </header>
@@ -42,33 +60,35 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
         {/* Aesthetic tag label */}
         <div className="inline-flex items-center space-x-2 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/60 shadow-xs mb-8">
           <Flower className="w-3.5 h-3.5 text-[#C084FC]" />
-          <span className="text-xs tracking-wider font-semibold uppercase text-[#6B5A63]">A Safe Space to Bloom</span>
+          <span className="text-xs tracking-wider font-semibold uppercase text-[#6B5A63]">{t('landing', 'tag')}</span>
         </div>
 
         {/* Hero Title */}
         <h1 className="font-serif text-5xl md:text-7xl font-light text-[#2D2529] tracking-tight leading-tight max-w-4xl mb-6">
-          Heal, reflect, and <span className="italic font-medium text-[#AA7BC3]">feel understood</span> in your busy calendar.
+          {t('landing', 'title_part1')}
+          <span className="italic font-medium text-[#AA7BC3]">{t('landing', 'title_part2')}</span>
+          {t('landing', 'title_part3')}
         </h1>
 
         {/* Hero Description */}
         <p className="text-lg text-[#6B5A63] max-w-2xl font-light mb-10 leading-relaxed">
-          A premium emotional wellness sanctuary meticulously designed for busy women and female students. Untangle burnout, soothe academic stress, and write in absolute absolute secrecy.
+          {t('landing', 'desc')}
         </p>
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
           <button 
             onClick={() => onEnterApp(true)}
-            className="w-full sm:w-auto px-8 py-4 bg-[#3F2B36] hover:bg-[#523A48] text-white rounded-full font-medium shadow-md transition-all duration-300 flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto px-8 py-4 bg-[#3F2B36] hover:bg-[#523A48] text-white rounded-full font-medium shadow-md transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
           >
-            <span>Begin Your Healing Journey</span>
+            <span>{t('landing', 'btn_start')}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
           <button 
             onClick={() => onEnterApp(false)}
-            className="w-full sm:w-auto px-8 py-4 bg-white/75 hover:bg-white/95 text-[#2D2529] border border-white/80 rounded-full font-medium shadow-sm backdrop-blur-md transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-4 bg-white/75 hover:bg-white/95 text-[#2D2529] border border-stone-200/40 rounded-full font-medium shadow-sm backdrop-blur-md transition-all duration-300 cursor-pointer"
           >
-            Explore Dashboard
+            {t('landing', 'btn_explore')}
           </button>
         </div>
 
@@ -80,39 +100,39 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
               <div className="w-8 h-8 rounded-full bg-[#E9E3FF] flex items-center justify-center text-[#aa84fc] mb-3">
                 <Heart className="w-4 h-4" />
               </div>
-              <h3 className="font-serif text-sm font-medium text-[#2D2529]">Aura Companion</h3>
-              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">Warm sisterhood guidance fueled by emotional AI.</p>
+              <h3 className="font-serif text-sm font-medium text-[#2D2529]">{t('landing', 'aura_title')}</h3>
+              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">{t('landing', 'aura_desc')}</p>
             </div>
             <div className="bg-[#FAF6F0] p-5 rounded-2xl border border-white/50">
               <div className="w-8 h-8 rounded-full bg-[#FDE2E4] flex items-center justify-center text-[#e08a90] mb-3">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <h3 className="font-serif text-sm font-medium text-[#2D2529]">Healing Cocoon</h3>
-              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">Deep breathing regulators and calming lo-fi rain waves.</p>
+              <h3 className="font-serif text-sm font-medium text-[#2D2529]">{t('landing', 'healing_title')}</h3>
+              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">{t('landing', 'healing_desc')}</p>
             </div>
             <div className="bg-[#FAF6F0] p-5 rounded-2xl border border-white/50">
               <div className="w-8 h-8 rounded-full bg-[#EAF4F4] flex items-center justify-center text-[#7caaa8] mb-3">
                 <Shield className="w-4 h-4" />
               </div>
-              <h3 className="font-serif text-sm font-medium text-[#2D2529]">Locked Diary</h3>
-              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">Secure writing with quick visual PIN padlock protections.</p>
+              <h3 className="font-serif text-sm font-medium text-[#2D2529]">{t('landing', 'locked_title')}</h3>
+              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">{t('landing', 'locked_desc')}</p>
             </div>
             <div className="bg-[#FAF6F0] p-5 rounded-2xl border border-white/50">
               <div className="w-8 h-8 rounded-full bg-[#FFF0F5] flex items-center justify-center text-[#df6792] mb-3">
                 <GraduationCap className="w-4 h-4" />
               </div>
-              <h3 className="font-serif text-sm font-medium text-[#2D2529]">Student Care</h3>
-              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">Specialized tools for burnout and academic stress.</p>
+              <h3 className="font-serif text-sm font-medium text-[#2D2529]">{t('landing', 'student_title')}</h3>
+              <p className="text-[11px] text-[#6B5A63] mt-1.5 font-light">{t('landing', 'student_desc')}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials or Emotional Connection */}
+      {/* Testimonials section */}
       <section className="bg-[#FFFDF9]/60 backdrop-blur-md py-20 border-t border-b border-[#E9E3FF]/30">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="font-serif text-3xl md:text-4xl text-center text-[#2D2529] font-light mb-12">
-            Why women and medical/law students <span className="italic text-[#AA7BC3]">love Yuéra</span>
+            {t('landing', 'social_title')} <span className="italic text-[#AA7BC3]">{t('landing', 'social_title_italic')}</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-7 rounded-3xl bg-white border border-[#E9E3FF]/40 shadow-xs relative">
@@ -120,11 +140,11 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
               </div>
               <p className="text-sm font-light text-[#52444C] leading-relaxed italic">
-                &ldquo;Between finals and law review, I was dry crying into my pillow. Aura helped me stop overthinking and taught me to set real emotional boundaries.&rdquo;
+                &ldquo;{t('landing', 'testimonial_1_text')}&rdquo;
               </p>
               <div className="mt-5">
                 <p className="text-xs font-semibold text-[#2D2529]">Clarissa V.</p>
-                <p className="text-[10px] text-[#8C7A84]">L2 Law Student, Chicago</p>
+                <p className="text-[10px] text-[#8C7A84]">{t('landing', 'testimonial_1_role')}</p>
               </div>
             </div>
 
@@ -133,11 +153,11 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
               </div>
               <p className="text-sm font-light text-[#52444C] leading-relaxed italic">
-                &ldquo;I love the aesthetic. It feels like stepping into a peaceful lavender field, miles away from my corporate anxiety. The PIN-locked journal is genius.&rdquo;
+                &ldquo;{t('landing', 'testimonial_2_text')}&rdquo;
               </p>
               <div className="mt-5">
                 <p className="text-xs font-semibold text-[#2D2529]">Maya Al-Hassan</p>
-                <p className="text-[10px] text-[#8C7A84]">Senior Brand Manager, NYC</p>
+                <p className="text-[10px] text-[#8C7A84]">{t('landing', 'testimonial_2_role')}</p>
               </div>
             </div>
 
@@ -146,11 +166,11 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
               </div>
               <p className="text-sm font-light text-[#52444C] leading-relaxed italic">
-                &ldquo;Yuéra is my morning ritual. Doing the breathing bubble with the lofi garden rain prepares my heart so I can enter clinicals with peace.&rdquo;
+                &ldquo;{t('landing', 'testimonial_3_text')}&rdquo;
               </p>
               <div className="mt-5">
                 <p className="text-xs font-semibold text-[#2D2529]">Dr. Elena Rostova</p>
-                <p className="text-[10px] text-[#8C7A84]">Resident Medical Doctor</p>
+                <p className="text-[10px] text-[#8C7A84]">{t('landing', 'testimonial_3_role')}</p>
               </div>
             </div>
           </div>
@@ -160,11 +180,11 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
       {/* Footer */}
       <footer className="py-12 text-center text-xs text-[#8C7A84]">
         <div className="flex justify-center space-x-6 mb-4">
-          <a href="#" className="hover:text-[#C084FC]">Privacy Policy</a>
-          <a href="#" className="hover:text-[#C084FC]">Terms of Service</a>
-          <a href="#" className="hover:text-[#C084FC]">Support</a>
+          <a href="#" className="hover:text-[#C084FC]">{t('common', 'privacyPolicy')}</a>
+          <a href="#" className="hover:text-[#C084FC]">{t('common', 'termsOfService')}</a>
+          <a href="#" className="hover:text-[#C084FC]">{t('common', 'support')}</a>
         </div>
-        <p>&copy; {new Date().getFullYear()} Yuéra Wellness. Nurtured with care.</p>
+        <p>&copy; {new Date().getFullYear()} Yuéra Wellness. {t('common', 'nurtured')}</p>
       </footer>
     </div>
   );
